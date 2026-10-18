@@ -1,0 +1,700 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>10-Week Fresher Roadmap</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: one sticky week-tab bar over a single reading column. Overview and Changes tabs sit at the ends, each week is a stack of collapsible days. */
+:root{
+  --bg:#f3f5f8; --surface:#ffffff; --ink:#18202e; --muted:#586376; --line:#dde1e9;
+  --accent:#2352c4; --accent-soft:#e6edfb;
+  --prog:#2352c4; --dev:#0c7a68; --rev:#a9620c; --test:#7640b0; --brk:#8b94a6;
+  --good:#17803d; --warn:#a9620c; --bad:#b42f2f;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e121a; --surface:#151a24; --ink:#e5e9f0; --muted:#9aa5b8; --line:#252c3a;
+    --accent:#7b9cf2; --accent-soft:#1b2640;
+    --prog:#7b9cf2; --dev:#44c2ab; --rev:#e3a64f; --test:#bb8fe8; --brk:#697386;
+    --good:#4cc27a; --warn:#e3a64f; --bad:#ef7b7b;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e121a; --surface:#151a24; --ink:#e5e9f0; --muted:#9aa5b8; --line:#252c3a;
+  --accent:#7b9cf2; --accent-soft:#1b2640;
+  --prog:#7b9cf2; --dev:#44c2ab; --rev:#e3a64f; --test:#bb8fe8; --brk:#697386;
+  --good:#4cc27a; --warn:#e3a64f; --bad:#ef7b7b;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.55 var(--sans);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:980px;margin:0 auto}
+.mono{font-family:var(--mono)}
+h1,h2,h3,h4{margin:0;text-wrap:balance;font-weight:600;line-height:1.2}
+p{margin:0}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+header.top{padding-top:28px;padding-bottom:18px;display:grid;gap:10px}
+.eyebrow{font:500 11.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:clamp(26px,5vw,34px);letter-spacing:-.01em}
+.lede{color:var(--muted);max-width:64ch}
+.overall{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:6px}
+.bar{height:8px;background:var(--line);border-radius:2px;overflow:hidden;flex:1 1 200px;min-width:0}
+.bar>i{display:block;height:100%;background:var(--accent);width:var(--p,0%)}
+.overall .num{font:500 12.5px var(--mono);color:var(--muted)}
+
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);
+  display:flex;gap:4px;overflow-x:auto;padding:8px 0;scrollbar-width:thin}
+.tab{flex:0 0 auto;min-width:48px;min-height:44px;padding:6px 10px;border:1px solid transparent;background:transparent;border-radius:4px;cursor:pointer;
+  display:grid;gap:5px;justify-items:stretch;text-align:center}
+.tab span{font:500 12.5px var(--mono)}
+.tab i{display:block;height:3px;background:var(--line);border-radius:1px;position:relative;overflow:hidden}
+.tab i::after{content:"";position:absolute;inset:0 auto 0 0;width:var(--p,0%);background:var(--accent)}
+.tab[aria-selected="true"]{background:var(--surface);border-color:var(--line)}
+.tab:hover{background:var(--surface)}
+.tab.wide{padding-inline:14px}
+
+main{padding-top:24px;display:grid;gap:28px}
+section.panel[hidden]{display:none}
+.panel{display:grid;gap:28px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:18px}
+.card h3{font-size:16px;margin-bottom:6px}
+.card .sub{color:var(--muted);font-size:13.5px;margin-bottom:14px;max-width:70ch}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:16px}
+.grid2>*{min-width:0}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+.linkbtn{background:none;border:0;padding:0;cursor:pointer;color:var(--accent);font:500 13px var(--mono);text-decoration:underline;text-underline-offset:3px}
+
+.rows{display:grid;gap:10px}
+.rrow{display:grid;grid-template-columns:150px 1fr 96px;gap:4px 12px;align-items:center;font-size:13.5px}
+.rrow .lab{min-width:0}
+.rrow .val{font:12.5px var(--mono);text-align:right;color:var(--muted);font-variant-numeric:tabular-nums}
+.meter{height:10px;background:var(--line);border-radius:2px;overflow:hidden;display:flex;min-width:0}
+.meter>i{display:block;height:100%;background:var(--c,var(--accent));width:var(--w,0%)}
+.meter>i+i{border-left:1px solid var(--surface)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--muted);margin-bottom:14px}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--c);margin-right:6px;vertical-align:baseline}
+.t-prog{--c:var(--prog)} .t-dev{--c:var(--dev)} .t-rev{--c:var(--rev)} .t-test{--c:var(--test)} .t-brk{--c:var(--brk)}
+.c-html{--c:var(--prog)} .c-css{--c:var(--dev)} .c-js{--c:var(--rev)} .c-proj{--c:var(--test)}
+
+.rules{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.rules li{display:grid;grid-template-columns:auto 1fr;gap:12px}
+.rules b{font-weight:600}
+.rules .k{font:500 12px var(--mono);color:var(--muted);padding-top:3px;min-width:22px}
+.note{border:1px solid var(--line);background:var(--accent-soft);border-radius:4px;padding:14px 16px;font-size:14px}
+.note b{font-weight:600}
+ul.plain{margin:0;padding-left:18px;display:grid;gap:6px}
+ul.plain li{padding-left:2px}
+
+.whead{display:grid;gap:12px}
+.whead h2{font-size:clamp(21px,4vw,26px)}
+.whead .kicker{font:500 11.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.wmeta{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--muted)}
+.wmeta span{white-space:nowrap}
+.mile{max-width:70ch}
+.status{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.status .lbl{font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:4px}
+.status label{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 12px;border:1px solid var(--line);border-radius:4px;background:var(--surface);cursor:pointer;font-size:13.5px}
+.status input{accent-color:var(--accent);margin:0}
+.status label:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.hint{font-size:12.5px;color:var(--muted)}
+
+details.day{background:var(--surface);border:1px solid var(--line);border-radius:4px}
+details.day+details.day{margin-top:8px}
+details.day>summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:auto 1fr auto;gap:4px 12px;align-items:center;padding:12px 16px;min-height:48px}
+details.day>summary::-webkit-details-marker{display:none}
+.chev{width:8px;height:8px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(-45deg);transition:transform .15s;margin-left:2px}
+details[open]>summary .chev{transform:rotate(45deg)}
+.dname{font-weight:600;min-width:0}
+.dname small{display:block;font-weight:400;color:var(--muted);font-size:12.5px;line-height:1.4;overflow-wrap:anywhere}
+.dcount{font:500 12.5px var(--mono);color:var(--muted);white-space:nowrap;text-align:right}
+.dcount.done{color:var(--good)}
+.dbody{padding:0 16px 8px;border-top:1px solid var(--line)}
+.block{padding:14px 0;border-bottom:1px solid var(--line)}
+.block:last-child{border-bottom:0}
+.bhead{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;font:500 12px var(--mono);color:var(--muted)}
+.bhead .tn{color:var(--ink)}
+.btitle{font-size:15.5px;margin:4px 0 8px}
+.block.brk{padding:8px 0}
+.block.brk .bhead{font-weight:400}
+.groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:4px 24px}
+.groups>div{min-width:0}
+.gh{font:500 11px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:6px 0 2px}
+label.item{display:grid;grid-template-columns:20px 1fr;gap:8px;padding:6px 0;cursor:pointer;align-items:start;overflow-wrap:anywhere}
+label.item input{margin:3px 0 0;width:16px;height:16px;accent-color:var(--accent)}
+label.item:has(input:checked) span{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--line)}
+.selfcheck{display:grid;gap:2px}
+.pager{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.btn{min-height:44px;padding:0 16px;border:1px solid var(--line);background:var(--surface);border-radius:4px;cursor:pointer;font-size:14px}
+.btn:hover{border-color:var(--accent)}
+.btn.danger{color:var(--bad)}
+.cutgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px}
+.cutgrid>*{min-width:0}
+.cutgrid h4{font:500 11.5px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+
+@media (max-width:560px){
+  .rrow{grid-template-columns:1fr auto}
+  .rrow .meter{grid-column:1 / -1;order:3}
+  .card{padding:14px}
+  details.day>summary{padding:10px 12px}
+  .dbody{padding-inline:12px}
+}
+@media (prefers-reduced-motion:reduce){.chev{transition:none}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow" id="eyebrow">Fresher programme</div>
+    <h1>10-Week Fresher Roadmap</h1>
+    <p class="lede">C++ and Java with DSA and OOP, all of HTML and CSS, and a start on JavaScript. Each week has a daily checklist, a Saturday test and a Sunday debug day.</p>
+    <div class="overall">
+      <div class="bar" id="overallBar" role="progressbar" aria-label="Overall progress" aria-valuemin="0" aria-valuemax="100"><i></i></div>
+      <span class="num" id="overallNum"></span>
+    </div>
+  </header>
+  <nav class="tabs" id="tabs" role="tablist" aria-label="Sections"></nav>
+  <main id="main"></main>
+</div>
+
+<script>
+/*DATA-START*/
+const H="html",C="css",J="js",P="proj";
+const L=s=>s.split("|");
+const dd=(focus,learn,practice,cat)=>({focus,learn:L(learn),practice:L(practice),cat});
+
+const WEEKS=[
+{n:1,title:"Hello, code",satCat:H,sunCat:H,
+ progTheme:"C++ basics: types, conditions, loops, functions",devTheme:"HTML core and semantic pages",
+ milestone:"By Sunday a fresher writes small C++ programs with conditions, loops and functions, and builds a semantic multi-section HTML page from scratch.",
+ mapOut:"Profile site built, 7 programs solved",
+ prog:[
+  dd("Setup, first program, variables","What a program is; compiler vs IDE|Compile and run with g++ in VS Code|Program structure: #include, main(), cout, cin, comments|Types: int, float, double, char, bool; constants|Type conversion and sizeof","Print Hello World|Print your name, branch and college|Read two numbers and print their sum|Area of a rectangle and a circle|Swap two numbers, with and without a third variable"),
+  dd("Operators and if/else","Arithmetic operators, integer division and %|Relational and logical operators|Increment and decrement; use brackets instead of memorising precedence|if, if-else, else-if ladder, nested if","Even or odd|Largest of two, then of three|Percentage and grade calculator|Leap year|Check divisibility by 3 and 5"),
+  dd("switch and loops","switch with break and default|for loop anatomy|while loop; do-while in one example|Dry-running a loop on paper","Print 1 to 100|Multiplication table of N|Sum of the first N numbers|Menu-driven calculator with switch|Vowel or consonant"),
+  dd("Nested loops, break, continue","Nested loops|break and continue|Digit extraction with % and /","Factorial|Count digits|Reverse a number|Prime check|Right-angled star pattern"),
+  dd("Functions","Why functions exist|Declaration, definition, call|Parameters and return values|Local vs global variables, basic idea","add(a, b)|max(a, b)|factorial(n)|isPrime(n)|grade(marks)")
+ ],
+ dev:[
+  dd("Skeleton of a web page","HTML, CSS and JS in one line each|Install Live Server in VS Code|Document structure: html, head, body, title|Headings and paragraphs|Attributes","Create index.html|Personal introduction page with 3 headings and 3 paragraphs|Open DevTools and inspect your own page",H),
+  dd("Links, images, lists","Anchor tag, relative vs absolute links|Images and alt text|Ordered, unordered and nested lists|File and folder paths","My Favourite Things page|Link it to a second page|Add 3 images from an images folder|Add one nested list",H),
+  dd("Tables and forms","Table, tr, th, td, colspan|Form, input types, label, button|textarea, select, radio, checkbox","Student marks table|Registration form|Give every input a label",H),
+  dd("Semantic HTML","header, nav, main, section, article, aside, footer|div vs semantic tags|Heading hierarchy","Convert your page to semantic tags|Skeleton of a college home page|Run the W3C validator and fix errors",H),
+  dd("Personal profile site, build day","Plan the sections before typing|Folder structure: index.html and assets/images","Header and navigation with anchor links|About, education, skills, hobbies|Table and contact form|Footer",H)
+ ],
+ apply:L("Console menu program using functions, a loop and switch|Fix any broken links and images in the profile site"),
+ satTest:{prog:L("5 MCQs on types, operators and loops|Predict the output of 3 snippets"),dev:L("HTML quiz, 10 questions|Build a one-section page from scratch, no copying")},
+ project:L("Finish the profile site: header, nav, about, education, skills, hobbies, image, links, table, form, footer|Fix broken links and images; check tag nesting|Organise as week1-project with index.html and assets/images"),
+ progSet:L("Even or odd|Largest of three|Grade calculator|Factorial|Prime checker|Reverse a number|One function-based problem of your choice"),
+ fix:L("Redo every question missed on Saturday|List the 5 compiler errors you hit most and what caused each|Re-solve one problem you copied"),
+ free:L("Rebuild the Day 2 page from scratch without notes|Optional: 3 star-pattern programs"),
+ selfCheck:L("Write, compile and run a C++ program unaided|Use if/else and switch|Use for and while loops|Write a function with parameters and a return value|Build an HTML page from scratch|Use links, images, tables and forms|Structure a page with semantic tags")
+},
+{n:2,title:"Arrays, strings, forms, first CSS",satCat:C,sunCat:C,
+ progTheme:"Functions, arrays, strings, 2D arrays",devTheme:"Forms, media, accessibility; CSS selectors and text",
+ milestone:"By Sunday a fresher handles arrays, strings and 2D arrays in C++, and ships a styled three-page HTML site with a validated form.",
+ mapOut:"Three-page club site, styled",
+ prog:[
+  dd("Functions in depth","Pass by value vs by reference|Scope and lifetime|Default arguments and function overloading","Swap using references|power(a, b)|gcd(a, b)|Count digits with a function|Fibonacci series with a loop"),
+  dd("One-dimensional arrays","Declare, initialise, index|Traverse with a loop|Arrays and functions|Out-of-bounds bugs","Input and print N numbers|Sum, max and min|Count even numbers|Reverse an array|Linear search"),
+  dd("Array operations and 2D arrays","Insert and delete at a position|Frequency of elements|2D arrays: declare, input, print","Second largest|Rotate by one|Remove duplicates from a sorted array|Row and column sums|Diagonal sum"),
+  dd("Strings","char array vs std::string|length, +, compare, substr, find|getline and the cin pitfall|ASCII values","Reverse a string|Palindrome check|Count vowels and consonants|Toggle case|Count words"),
+  dd("Strings and matrix problems","Frequency array of size 26|Sorting characters with std::sort|Matrix addition and transpose","Anagram check|First repeating character|Remove spaces|Transpose a matrix|Longest word in a sentence")
+ ],
+ dev:[
+  dd("Forms in depth","Input types: email, number, date, radio, checkbox|Validation attributes: required, min, max, pattern|fieldset, legend, select and optgroup","Job application form|Validate with HTML attributes only|Tab through the whole form with the keyboard",H),
+  dd("Media and accessibility","Audio, video and iframe|Alt text, labels, heading order, lang|meta viewport, description, favicon|Lighthouse accessibility check","Add media to the profile page|Fix every Lighthouse accessibility warning|Start a 3-page College Club site: home, events, contact",H),
+  dd("CSS: selectors and colours","Inline, internal and external CSS; use external|Element, class and id selectors|Grouping and descendant selectors|Colours: names, hex, rgb, hsl","Style the profile page with an external stylesheet|Create a 4-colour palette|Style links in all four states",C),
+  dd("Fonts, text and the cascade","font-family, Google Fonts, size, weight|line-height, letter-spacing, text-align|Cascade and specificity|Editing CSS live in DevTools","Restyle the typography of the profile page|Cause a specificity conflict on purpose and explain it|Match the text styling of a given screenshot",C),
+  dd("Backgrounds and borders","background colour, image, size, position|border and border-radius|box-shadow, used sparingly|Opacity","Style the club website|Build a card with border, radius and shadow|Hero section with a background image",C)
+ ],
+ apply:L("Link the club pages with one shared stylesheet|Check the three pages look consistent"),
+ satTest:{prog:L("Predict the output of 5 array and string snippets|Trace one 2D array program on paper"),dev:L("CSS selector quiz, 8 questions|Style a given HTML page to match a screenshot in 20 minutes")},
+ project:L("Finish the 3-page College Club website with a shared stylesheet|Forms page with HTML validation|Lighthouse accessibility score above 90|Meta tags and favicon on every page"),
+ progSet:L("Second largest element|Palindrome string|Character frequency|Matrix transpose|Anagram check|Rotate an array by k|Count words in a sentence"),
+ fix:L("Redo every question missed on Saturday|Trace one array program on paper with a table of values|Fix every off-by-one error from this week"),
+ free:L("Restyle the Week 1 profile site with the new CSS|Optional: 3 more string problems"),
+ selfCheck:L("Pass an array to a function and modify it|Use std::string methods|Handle a 2D array|Link a stylesheet and use class selectors|Explain specificity in one sentence|Build a validated form")
+},
+{n:3,title:"Pointers, vectors, complexity, Flexbox",satCat:C,sunCat:C,
+ progTheme:"Pointers, vector, complexity, prefix sum, two pointers",devTheme:"Box model, positioning, Flexbox",
+ milestone:"By Sunday a fresher reasons about memory and cost, uses vector, and lays out a full landing page with Flexbox.",
+ mapOut:"Flexbox landing page",
+ prog:[
+  dd("Pointers and references","Memory model: address and value|Pointer declaration, & and *|Pointer vs reference|Array name as a pointer","Swap with pointers|Print an array using a pointer|Trace 5 pointer snippets on paper|Spot the bug: dangling and null pointers"),
+  dd("vector, and new/delete","vector: push_back, size, pop_back, range-for|vector of vectors|new and delete, concept with one example|Why leaks happen","Read N numbers into a vector|Sum and average|Remove duplicates from a sorted vector|Reverse a vector|2D vector matrix"),
+  dd("Time and space complexity","What Big-O measures|O(1), O(log n), O(n), O(n log n), O(n squared)|Counting operations in loops|Space complexity","Classify 10 code snippets|Two ways to find a duplicate; compare their cost|Estimate the running time for n = 100000"),
+  dd("Prefix sum and frequency counting","Prefix sum array|Range-sum queries|Frequency array and the map idea","Range sum queries|Equilibrium index|Character frequency|First non-repeating character|Subarray with a given sum, positives only"),
+  dd("Two pointers","Opposite-end pointers|Same-direction pointers|When two pointers works: sorted or symmetric data","Reverse in place|Pair with a given sum in a sorted array|Remove duplicates in place|Valid palindrome ignoring spaces|Container with most water")
+ ],
+ dev:[
+  dd("Box model and units","Content, padding, border, margin|box-sizing: border-box|px, %, em, rem, vw, vh|Margin collapse in one line","Build a profile card with exact dimensions|Compare content-box and border-box in DevTools|Centre a block with margin auto",C),
+  dd("Display and positioning","block, inline, inline-block|position: relative, absolute, fixed, sticky|z-index","Sticky navbar|Notification badge on an icon|Overlay with fixed position",C),
+  dd("Flexbox I","Flex container: direction and wrap|justify-content, align-items, gap|Centring anything","Navigation bar|Centred hero section|Row of 3 equal cards",C),
+  dd("Flexbox II","flex-grow, flex-shrink, flex-basis, flex: 1|align-self and order|Wrapping flex rows","Pricing cards|Sticky-footer page layout|Sidebar plus content layout",C),
+  dd("CSS variables and polish","Custom properties for colour and spacing|Hover and focus states|A simple type and spacing scale|Visual hierarchy","Re-theme a page by changing only variables|Apply a palette to the profile site|Style focus rings for keyboard users",C)
+ ],
+ apply:L("Rebuild the profile site layout with Flexbox|Compare before and after in DevTools"),
+ satTest:{prog:L("Pointer and vector output questions, 5|Complexity quiz, 5"),dev:L("Flexbox quiz, 6 questions|Reproduce a given navbar layout in 20 minutes")},
+ project:L("Static landing page with Flexbox: navbar, hero, features, testimonials, footer|Palette and spacing from CSS variables|Everything aligned on one spacing scale"),
+ progSet:L("A prefix-sum query problem|Two-pointer pair sum|A frequency problem|Two vector manipulation problems|Write the complexity beside every solution|Solve one problem two ways"),
+ fix:L("Redo every question missed on Saturday|Draw memory boxes for 3 pointer programs|Fix any crash you caused this week"),
+ free:L("Add a light and dark theme to the landing page using variables|Optional: pointer swap and reverse-array drills"),
+ selfCheck:L("Explain pointer vs reference|Use vector confidently|State the complexity of my own loops|Use prefix sum and two pointers|Lay out a page with Flexbox|Explain the box model")
+},
+{n:4,title:"Searching, sorting, recursion, Grid",satCat:C,sunCat:C,
+ progTheme:"Binary search, sorting, recursion; Java setup",devTheme:"Grid, responsive design, transitions",
+ milestone:"By Sunday a fresher writes binary search and recursion unaided, and has a responsive portfolio live on GitHub Pages.",
+ mapOut:"Responsive portfolio on GitHub Pages",
+ prog:[
+  dd("Searching","Linear search|Binary search: idea, conditions, iterative code|Dry run with low, mid, high","Binary search on a sorted array|First and last occurrence|Floor of a square root|Search in a rotated array"),
+  dd("Sorting","Bubble, selection, insertion: implement each once|Stable vs unstable sorting|std::sort and custom comparators|Cost: O(n squared) vs O(n log n)","Sort an array three ways|Sort strings by length|Sort pairs by second value|Check if an array is sorted"),
+  dd("Recursion I","The call stack|Base case and recursive case|Tracing recursion as a tree of calls","Factorial|Sum of digits|Power function|Print 1 to n and n to 1|Fibonacci, and why it is slow"),
+  dd("Recursion II and merge sort","Recursion on arrays and strings|Divide and conquer|Merge sort concept and the merge step","Reverse a string recursively|Palindrome recursively|Sum of an array recursively|Implement the merge function|Full merge sort"),
+  dd("Mixed practice and Java setup","Choosing between linear search, binary search and sorting first","6 mixed problems on search, sort and recursion|Install the JDK and set up VS Code for Java|Run a Java Hello World")
+ ],
+ dev:[
+  dd("CSS Grid I","grid-template-columns and rows|fr unit, repeat(), gap|Placing items with grid-column and grid-row","Photo gallery grid|Classic header, sidebar, content, footer layout|Calendar grid for a month",C),
+  dd("CSS Grid II, Flex vs Grid","minmax, auto-fit, auto-fill|grid-template-areas|Flex for one dimension, Grid for two","Responsive card grid without a media query|Dashboard layout with named areas|Choose flex or grid for 5 given layouts and justify each",C),
+  dd("Responsive design","Mobile-first approach|viewport meta|Media queries and breakpoints|Fluid images; clamp() for type","Make the Week 3 landing page responsive|Test at 360, 768 and 1280 px in DevTools|CSS-only mobile menu",C),
+  dd("Transitions and pseudo selectors","transition property and timing|:hover, :focus, :active, :nth-child|::before and ::after|transform: translate and scale","Hover card with a smooth lift|Animated button|Underline-on-hover nav links|Striped table with nth-child",C),
+  dd("Responsive portfolio, build day","Portfolio structure: sections and content|Image sizing for performance","Hero, projects grid, skills, contact|Responsive at 3 widths|Lighthouse performance and accessibility check",C)
+ ],
+ apply:L("Finish the responsive pass on the portfolio|Remove any horizontal scrolling at 360 px"),
+ satTest:{prog:L("Search and sort quiz, 6|Predict the output of 4 recursion snippets"),dev:L("Grid vs Flex quiz, 6 questions|Build a responsive 3-card section in 20 minutes")},
+ project:L("Finish the responsive portfolio: Grid for projects, Flex for navigation|Transitions on interactive elements|Lighthouse accessibility above 90 and performance above 80"),
+ progSet:L("Two binary search variants|Two sorting problems|Three recursion problems|One problem solved by recursion and by a loop"),
+ fix:L("Redo every question missed on Saturday|Trace binary search and recursion on paper|Fix every infinite loop and stack overflow from this week"),
+ free:L("Git basics: init, add, commit, push|Publish the portfolio with GitHub Pages|Optional: merge sort from scratch"),
+ selfCheck:L("Write binary search without notes|Explain why merge sort is O(n log n)|Trace a recursive call stack|Build a responsive Grid layout|Use media queries and transitions|Have a live portfolio URL")
+},
+{n:5,title:"C++ OOP and first JavaScript",satCat:J,sunCat:J,
+ progTheme:"C++ OOP: classes to polymorphism",devTheme:"JavaScript: syntax, functions, arrays, objects",
+ milestone:"By Sunday a fresher models a problem with C++ classes and inheritance, and writes plain JavaScript with functions, arrays and objects.",
+ mapOut:"Console quiz engine in JavaScript",
+ prog:[
+  dd("Classes and objects","Class vs object|Data members and member functions|public, private, protected|Defining functions inside and outside the class","Student class: name, roll, marks|Rectangle class with area()|Array of objects|Display all students above 60 percent"),
+  dd("Constructors and encapsulation","Default, parameterised and copy constructors|Destructor: when it runs|The this pointer|Getters and setters; why hide data","BankAccount with validated deposit and withdraw|Print the constructor and destructor order|An immutable Point class with no setters"),
+  dd("Inheritance","Single and multilevel inheritance|protected members|Constructor order in inheritance|Composition vs inheritance, idea only","Person, Student, Teacher hierarchy|Vehicle, Car, ElectricCar|Predict the constructor output of 3 snippets"),
+  dd("Polymorphism and abstraction","Function overloading|Overriding and virtual functions|Base pointer to a derived object|Abstract class and pure virtual","Shape hierarchy with area() and perimeter()|Employee payroll with virtual salary()|Explain compile-time vs runtime polymorphism in your own words"),
+  dd("static, const, exceptions","static members and functions|const member functions|try, catch, throw|Standard exceptions","Count objects created with a static member|Safe division using an exception|Library mini-system with 3 classes")
+ ],
+ dev:[
+  dd("JavaScript basics","Where JS runs: browser and console|script tag and console.log|let and const; skip var|Data types and typeof|Template literals","Console exercises with variables|Celsius to Fahrenheit in JS|String formatting with template literals",J),
+  dd("Operators, conditions, loops","== vs ===|Truthy and falsy values|if, switch, ternary|for, while, for...of","FizzBuzz|Multiplication table|Factorial and prime check; compare with your C++ code",J),
+  dd("Functions","Declaration, expression, arrow function|Default parameters|Return values and scope|Functions as values: the callback idea","Calculator functions|isPrime and isPalindrome|A function that takes another function as input",J),
+  dd("Arrays","Create, index, length|push, pop, shift, unshift, slice, splice|forEach, map, filter, reduce|find, includes, sort","Filter even numbers|Sum with reduce|Find the highest marks|Sort students by marks|Remove duplicates",J),
+  dd("Objects and records","Object literals, dot and bracket access|Methods on objects|Array of objects|Object.keys, values, entries; basic destructuring","Student records array|Group students by grade|Console grade manager: add, list, average",J)
+ ],
+ apply:L("Finish the Library mini-system with a menu loop|Start the JS console quiz using an array of question objects"),
+ satTest:{prog:L("OOP quiz on constructors, inheritance and virtual, 8|Predict the output of 3 OOP snippets"),dev:L("JS quiz on types, functions and arrays, 8|Write a map, filter and reduce chain in 15 minutes")},
+ project:L("JS console quiz engine: questions array, scoring, results|Use functions and objects; no DOM yet|Add 10 real questions about HTML and CSS"),
+ progSet:L("A class with encapsulation, 2 problems|An inheritance chain|Polymorphism with virtual, 2 problems|Two output-tracing problems"),
+ fix:L("Redo every question missed on Saturday|Draw a class diagram for each Week 5 program|Fix every constructor-order surprise"),
+ free:L("Port FizzBuzz and factorial from C++ to JS side by side|Optional: more array method drills"),
+ selfCheck:L("Explain the four OOP pillars with C++ examples|Write constructors and a virtual function|Explain compile-time vs runtime polymorphism|Write JS functions and use array methods|Use objects in JS")
+},
+{n:6,title:"Java begins, DOM and events",satCat:J,sunCat:J,
+ progTheme:"Java basics and OOP, ported from C++",devTheme:"DOM and events",
+ milestone:"By Sunday a fresher runs Java programs, ports C++ solutions to Java, and builds a working DOM app.",
+ mapOut:"Working to-do app",
+ prog:[
+  dd("Java for a C++ programmer","JDK, JRE and JVM in one picture|One class per file; the main method|System.out and Scanner|Types; String is immutable; no pointers|Garbage collection vs delete","Hello World and input in Java|Port 5 Week 1 programs: area, grade, factorial, prime, reverse|Write a C++ vs Java comparison table in your notebook"),
+  dd("Control flow, methods, arrays in Java","for, enhanced for, switch|static methods|Arrays: new int[n], length|Arrays.toString and Arrays.sort","Port 5 array problems from Weeks 2 and 3|Matrix transpose in Java|Binary search in Java"),
+  dd("Strings and ArrayList","String methods and StringBuilder|equals vs ==|ArrayList: add, get, remove, size|Wrapper classes such as Integer","Palindrome and vowel count in Java|Reverse an ArrayList|Sum and max of an ArrayList|Anagram check in Java"),
+  dd("Java OOP I","Classes, objects, constructors|this and access modifiers|Getters, setters, toString|static members","Port Student and BankAccount from C++|Count objects with static|Compare the C++ and Java code line by line"),
+  dd("Java OOP II","extends and super|Overriding with @Override|The Object class: toString and equals|Polymorphism through a parent reference","Port the Shape hierarchy|Employee payroll in Java|Answer: what is virtual by default in Java?")
+ ],
+ dev:[
+  dd("DOM basics","What the DOM is|querySelector, querySelectorAll, getElementById|textContent vs innerHTML|Changing styles and classes","Change a heading from a button|Toggle dark mode with a class|Select all list items and highlight one",J),
+  dd("Events","addEventListener|click, input, keydown, submit|The event object|preventDefault","Click counter|Live character counter on a textarea|Keyboard shortcut",J),
+  dd("Creating and removing elements","createElement, append, remove|classList add, remove, toggle|Rendering a list from an array","Add and remove list items|Render a product list from an array of objects|Mark items done with a class",J),
+  dd("Forms in JS","Reading input values|Validation logic|Showing error messages|FormData basics","Registration form validation|Password strength hint|Disable submit until the form is valid",J),
+  dd("Interactive components","Tabs, accordion and modal patterns|Event delegation, the idea|Accessible toggles with aria-expanded","FAQ accordion|Modal on the portfolio|Tabbed content",J)
+ ],
+ apply:L("Add the accordion and the modal to your portfolio|Check keyboard access for both"),
+ satTest:{prog:L("Java vs C++ quiz, 8|Predict the output of 3 Java snippets"),dev:L("DOM and events quiz, 8|Build a counter with reset in 15 minutes, no notes")},
+ project:L("To-do list: add, complete, delete|Render it from an array of objects|Style it with the portfolio's palette"),
+ progSet:L("5 problems you have not yet ported to Java|2 new array problems in Java|1 OOP class in Java from a written spec"),
+ fix:L("Redo every question missed on Saturday|Read every Java compiler error and fix it before searching|Note the 5 differences from C++ that tripped you"),
+ free:L("Make the to-do list fully keyboard accessible|Optional: port a Week 5 OOP program you skipped"),
+ selfCheck:L("Run Java from VS Code and the command line|Port a C++ program to Java|Write a Java class hierarchy|Select and change elements with the DOM|Handle events|Build a small DOM app")
+},
+{n:7,title:"Java collections, ES6, storage",satCat:J,sunCat:J,
+ progTheme:"Java interfaces, exceptions, collections",devTheme:"ES6, array methods, localStorage, debugging",
+ milestone:"By Sunday a fresher designs small Java programs with interfaces, exceptions and collections, and builds a JS app that remembers its data.",
+ mapOut:"Expense tracker with persistence",
+ prog:[
+  dd("Abstract classes and interfaces","Abstract classes and methods|interface and implements|Interface vs abstract class: when to use which|Polymorphism through interface references","Payment interface with UPI and Card|Shape as an abstract class|Shape and Drawable together"),
+  dd("Exceptions and packages","try, catch, finally|Checked vs unchecked exceptions|throw, throws, custom exceptions|Packages and imports, concept","Safe input parsing with Integer.parseInt|Custom InsufficientBalanceException|Retry loop on bad input"),
+  dd("Collections I","ArrayList, HashSet, HashMap|Iterating over a map|Generics: just read List of String|Compare with C++ vector, set, unordered_map","Word frequency with HashMap|Remove duplicates with HashSet|Two-sum with HashMap|Group names by first letter"),
+  dd("OOP design practice","Finding classes in a problem statement|One responsibility per class|Composition: has-a","Design a Library system: Book, Member, Library|Write the class skeletons first|Implement borrow and return"),
+  dd("Library system and C++ vs Java OOP","Differences: virtual, interfaces, multiple inheritance, memory","Finish the Library system with a menu|Write your own C++ vs Java OOP comparison table|Explain 3 differences aloud")
+ ],
+ dev:[
+  dd("ES6 essentials","Destructuring arrays and objects|Spread and rest|Default parameters recap|Optional chaining","Merge two objects with spread|Swap variables with destructuring|A function using rest parameters",J),
+  dd("Array methods in depth","map, filter, reduce chains|sort with a comparator|some, every, find, findIndex|Do not mutate the source array","Filter and sort a product list|Total cart value with reduce|Render the filtered results to the DOM",J),
+  dd("JSON and localStorage","JSON.stringify and JSON.parse|localStorage get, set, remove|What not to store|Handling empty or corrupt storage","Persist the to-do list across reloads|Save a theme preference|Export the list as JSON text",J),
+  dd("Debugging and errors","Reading console errors|Breakpoints in DevTools|try and catch in JS|Common mistakes: undefined, null, NaN","Fix 5 given broken scripts|Step through a loop with a breakpoint|Add error handling to the to-do app",J),
+  dd("Expense tracker, build day","Data shape: array of objects|Render functions: state in, DOM out","Add-expense form with validation|List and delete expenses|Total and category summary",J)
+ ],
+ apply:L("Persist expenses to localStorage|Add a filter by category"),
+ satTest:{prog:L("Interfaces and exceptions quiz, 8|Predict the output of 3 collections snippets"),dev:L("ES6 quiz, 6 questions|Rewrite a for loop with map and filter in 10 minutes")},
+ project:L("Finish the Expense Tracker: add, delete, filter, total|Persistence with localStorage|Responsive layout"),
+ progSet:L("2 interface-based design problems|1 exception-handling problem|4 HashMap and HashSet problems"),
+ fix:L("Redo every question missed on Saturday|Rewrite one C++ STL solution with Java collections|Fix every NullPointerException from this week"),
+ free:L("Polish the Expense Tracker's empty and error states|Optional: sort expenses by date"),
+ selfCheck:L("Choose between an abstract class and an interface|Write and throw a custom exception|Use HashMap and HashSet in Java|Use destructuring and spread|Save to and load from localStorage|Debug with breakpoints")
+},
+{n:8,title:"Linear structures, async JS, APIs",satCat:J,sunCat:J,
+ progTheme:"Linked list, stack, queue",devTheme:"Async JS, fetch, APIs",
+ milestone:"By Sunday a fresher builds a linked list, stack and queue, and ships a deployed app that reads data from a public API.",
+ mapOut:"Deployed API app",
+ prog:[
+  dd("Linked list I","Node and pointer; why not an array|Singly linked list in C++|Insert at head and tail|Traverse and search","Build a linked list class|Insert, display, count nodes|Search for a value|Insert at a position"),
+  dd("Linked list II","Delete a node by value|Reverse a list, iterative|Slow and fast pointers","Delete a node|Reverse the list|Middle of the list|Detect a cycle"),
+  dd("Stack","LIFO: push, pop, peek|Array implementation|std::stack|Applications","Implement a stack with an array|Balanced parentheses|Reverse a string with a stack|Next greater element"),
+  dd("Queue","FIFO: enqueue, dequeue|Circular queue, the idea|std::queue and deque|Applications","Implement a queue|Reverse a queue using a stack|Print binary numbers 1 to n with a queue|First non-repeating character in a stream"),
+  dd("Java equivalents","LinkedList, ArrayDeque, Stack in Java|Queue interface: offer, poll, peek|When ArrayList beats LinkedList","Balanced parentheses in Java|Reverse a list in Java|6 mixed linear-structure problems in either language")
+ ],
+ dev:[
+  dd("Async basics","Synchronous vs asynchronous|setTimeout and callbacks|Promises: then and catch|Why promises replaced nested callbacks","Delayed message with setTimeout|Wrap a timeout in a Promise|Chain 3 promises",J),
+  dd("async/await and fetch","async and await|fetch and the Response object|response.json()|try and catch for network errors","Fetch a list from a public JSON API|Log the data|Show an error when the network is off, tested in DevTools",J),
+  dd("Render API data","Mapping JSON to DOM cards|Loading, empty and error states|Query-string search","User directory from an API|Search box that filters results|Loading text while waiting",J),
+  dd("API app, build day","Choosing a free API that needs no key|Planning state: loading, data, error","Build a list and detail view|Add search or filter|Responsive cards",J),
+  dd("API app, polish day","Debounce, the idea|Caching the last result in localStorage|aria-live for dynamic content","Add debounce or a search button|Cache the last results|Deploy the app to GitHub Pages",J)
+ ],
+ apply:L("Fix the bugs found while deploying|Write a short README: what the app does and which API it uses"),
+ satTest:{prog:L("Linked list tracing, 3|Stack and queue quiz, 6"),dev:L("Async quiz: predict the order of logs, 4|Fetch and render 5 items from a given URL")},
+ project:L("Finish the API app: search, loading state, error state|Deployed on GitHub Pages|README with a live link"),
+ progSet:L("3 linked list problems|2 stack problems|1 queue problem|1 problem in Java with collections"),
+ fix:L("Redo every question missed on Saturday|Draw every pointer change for reverse-list on paper|Fix any null-pointer bug"),
+ free:L("Polish the design of the API app|Optional: implement a stack with a linked list"),
+ selfCheck:L("Build and traverse a linked list|Reverse a linked list|Use a stack for brackets|Explain a promise|Use async/await with fetch|Show loading and error states")
+},
+{n:9,title:"Trees, hashing, capstone build",satCat:P,sunCat:P,
+ progTheme:"Trees, BST, hashing, patterns",devTheme:"Capstone: plan, layout, data, forms",
+ milestone:"By Sunday a fresher traverses trees, uses hash maps and names the pattern before coding, and the capstone's core features work.",
+ mapOut:"Capstone core features done",
+ prog:[
+  dd("Binary trees","Tree vocabulary: root, leaf, height|Node with left and right pointers|Preorder, inorder, postorder, recursive","Build a small tree by hand|Print all three traversals|Height of a tree|Count nodes"),
+  dd("Tree problems","Level-order with a queue|Recursion on trees: find the subproblem","Level-order traversal|Count leaves|Maximum depth|Check if two trees are identical"),
+  dd("Binary search tree","The BST property|Insert and search|Inorder gives sorted order|Min and max","Insert and search in a BST|Validate a BST|Inorder into an array|Delete a node"),
+  dd("Hashing","Hash table idea; collisions, concept|unordered_map and HashMap|Frequency maps|Hash set for membership","Two-sum|First duplicate|Count distinct elements|Subarray with zero sum"),
+  dd("Problem-solving patterns","Sliding window, fixed size|Pattern checklist: prefix sum, two pointers, binary search, hashing","Maximum sum of a subarray of size k|6 mixed problems; name the pattern before coding|Longest substring without repeats")
+ ],
+ dev:[
+  dd("Capstone plan","Pick one idea: college events site, quiz app or expense dashboard|User stories, 5 at most|Wireframes on paper; page and component list|Data shape","Write the scope in 10 lines|Sketch 3 screens|Create the repo and folder structure",P),
+  dd("Capstone: layout","Design tokens: colour, type, spacing|Reusable components in plain CSS","Header, hero, grid and footer|Responsive at 360, 768 and 1280 px|Commit with clear messages",P),
+  dd("Capstone: data and rendering","State as an array of objects|Render functions","Render the main list|Add filter or search|Handle the empty state",P),
+  dd("Capstone: forms and storage","Validation rules|Persisting with localStorage","Create and delete flows|Validate inputs|Persist on reload",P),
+  dd("Capstone: API and polish","A Lighthouse pass|Reading a bug report from a peer","One API-backed feature, optional|Fix the 5 worst bugs|Keyboard-only walkthrough",P)
+ ],
+ apply:L("Update the README with a screenshot plan|Tick off the capstone feature list"),
+ satTest:{prog:L("Tree traversal tracing, 3|Hashing quiz, 5|Name the pattern for 6 problems"),dev:L("Capstone mid-review with a peer, 10 minutes")},
+ project:L("Capstone integration: all core features working|Bug bash with a peer|Deploy a first version"),
+ progSet:L("3 tree problems|1 BST problem|3 hashing problems|1 sliding-window problem"),
+ fix:L("Redo every question missed on Saturday|Trace inorder on 3 trees|Fix stack overflows in recursive tree code"),
+ free:L("Capstone catch-up|Optional: 2 hashing problems in Java"),
+ selfCheck:L("Traverse a tree in all three orders|Insert and search in a BST|Use a hash map for frequency and two-sum|Name the pattern for a problem before coding|Capstone core features work")
+},
+{n:10,title:"Consolidation and assessment",satCat:P,sunCat:P,
+ sat:{test:105,project:60,prog:30},
+ progTheme:"Mixed sets, OOP review, mock test",devTheme:"Capstone polish, deploy, demo",
+ milestone:"By Sunday each fresher has taken a closed-book coding test, demoed a deployed capstone, and has a list of what to study next.",
+ mapOut:"Final assessment and capstone demo",
+ prog:[
+  dd("Mixed set I","Timed practice: read, plan, code, test|Writing test cases before submitting","8 problems on arrays, strings and binary search, 60 minutes|Write down your weakest 3 topics"),
+  dd("Mixed set II","Choosing a data structure|Complexity of your own solutions","6 problems on linked list, stack, queue and tree|Explain each solution's complexity aloud"),
+  dd("Mixed set III in Java","Collections cheat sheet in Java|Common Java pitfalls: == vs equals, integer division, null","6 problems in Java on hashing, collections and strings|Re-solve 2 old C++ problems in Java"),
+  dd("OOP revision","Four pillars with examples in both languages|C++ vs Java OOP differences","8 oral OOP questions|Design a Parking Lot with class skeletons|Implement one flow"),
+  dd("Mock coding test","Test-day routine: read all problems first, easiest first|Debugging under time pressure","Mock test: 4 problems, 90 minutes, language of your choice|Review every wrong answer")
+ ],
+ dev:[
+  dd("Capstone: finish features","Feature freeze rule|Code cleanup: names and dead code","Finish any missing core feature|Remove console.log calls and dead code|Consistent spacing and naming",P),
+  dd("Capstone: quality","Responsive checklist|Accessibility checklist","Test at phone width|Keyboard-only walkthrough|Lighthouse accessibility above 90",P),
+  dd("Capstone: deploy","GitHub Pages deploy|Writing a README","Deploy the final build|README: what, why, how to run, screenshots|Test the live URL on a phone",P),
+  dd("Peer review and demo script","Giving useful code feedback|Structuring a 5-minute demo","Review one peer's capstone: 3 strengths and 3 fixes|Write your demo script|Prepare 5 viva answers",P),
+  dd("Rehearsal","Common viva questions on HTML, CSS and JS","Rehearse the demo twice|Answer 10 viva questions aloud|Fix the last bugs found in rehearsal",P)
+ ],
+ apply:L("Final polish and submission checklist|Share the live link and the repo link"),
+ satTest:{prog:L("Final coding test: 4 problems, 60 minutes, one language of your choice"),dev:L("Final dev task: build a page from a spec in 45 minutes with HTML, CSS and small JS")},
+ project:L("Capstone demo, 5 minutes each, then feedback|Submit the repo link and the live URL"),
+ progSet:L("Mock viva: 10 OOP and DSA questions, answered aloud"),
+ fix:L("Review the mistakes from the final test|List the 5 topics to revisit first"),
+ free:L("Write a one-page retrospective: what clicked and what did not|Choose your next 30 days: deeper JS, graphs and DP, or a framework"),
+ selfCheck:L("Write a C++ and a Java program from a spec|Solve an unfamiliar array or string problem|Explain OOP in both languages|Build a responsive JS site|Deploy and present it")
+}
+];
+
+function buildDays(w){
+  const days=[];
+  for(let d=0;d<7;d++){
+    const blocks=[];
+    const add=(track,mins,title,groups,cat)=>blocks.push({track,mins,title,groups:groups||[],cat});
+    if(d<5){
+      const fri=d===4;
+      if(w.n===1&&d===0){
+        add("rev",10,"Setup check",[{h:"Check",items:["VS Code, a C++ compiler (g++) and Chrome are installed and working","A folder for the course is open in VS Code"]}]);
+      }else{
+        const prev=d>0?{p:w.prog[d-1],v:w.dev[d-1]}:{p:WEEKS[w.n-2].prog[4],v:WEEKS[w.n-2].dev[4]};
+        add("rev",fri?15:10,"Recall from last session",[{h:"No notes",items:["Retype from memory: "+prev.p.focus,"Explain aloud in one minute: "+prev.v.focus]}]);
+      }
+      add("prog",fri?75:65,w.prog[d].focus,[{h:"Learn",items:w.prog[d].learn},{h:"Practice",items:w.prog[d].practice}]);
+      add("brk",fri?10:5,"Break");
+      add("dev",fri?75:65,w.dev[d].focus,[{h:"Learn",items:w.dev[d].learn},{h:"Practice",items:w.dev[d].practice}],w.dev[d].cat);
+      if(fri)add("dev",30,"Apply and combine",[{h:"Build",items:w.apply}],w.dev[4].cat);
+      add("rev",5,"Wrap-up log",[{h:"Log",items:["Write one thing you learned and one thing still unclear"]}]);
+    }else if(d===5){
+      const s=Object.assign({test:45,project:75,prog:75},w.sat||{});
+      const tg=[{h:"Programming",items:w.satTest.prog},{h:"Development",items:w.satTest.dev}];
+      if(w.n>=3)tg.push({h:"Retention check, D14",items:["Answer 5 questions from Week "+(w.n-2)+" without notes"]});
+      add("test",s.test,"Weekly test, closed book",tg);
+      add("brk",10,"Break");
+      add("dev",s.project,"Weekly build",[{h:"Build",items:w.project}],w.satCat);
+      add("brk",10,"Break");
+      add("prog",s.prog,"Problem set",[{h:"Solve",items:w.progSet}]);
+      add("rev",20,"Review mistakes",[{h:"Review",items:["Label each wrong answer: concept gap, syntax slip or careless","Write the corrected solution beside it","Set this week's Green, Yellow or Red status below"]}]);
+      add("rev",5,"Wrap-up log",[{h:"Log",items:["Write one thing you learned and one thing still unclear"]}]);
+    }else{
+      add("rev",30,"Weekly revision, D7",[{h:"Revisit",items:["Programming: "+w.prog.map(x=>x.focus).join(" / "),"Development: "+w.dev.map(x=>x.focus).join(" / ")]}]);
+      add("prog",60,"Debug and consolidation",[{h:"Fix",items:w.fix}]);
+      add("brk",10,"Break");
+      add("dev",50,"Free build and catch-up",[{h:"Build",items:w.free}],w.sunCat);
+      add("rev",25,"Plan next week",[{h:"Plan",items:["Complete the self-check list below","Write the 3 topics to revisit first next week"]}]);
+      add("rev",5,"Wrap-up log",[{h:"Log",items:["Write one thing you learned and one thing still unclear"]}]);
+    }
+    days.push({d,blocks,mins:blocks.reduce((a,b)=>a+b.mins,0)});
+  }
+  return days;
+}
+const WK=WEEKS.map(w=>({w,days:buildDays(w)}));
+function tally(days){
+  const t={prog:0,dev:0,rev:0,test:0,brk:0},c={html:0,css:0,js:0,proj:0};
+  days.forEach(d=>d.blocks.forEach(b=>{t[b.track]+=b.mins;if(b.track==="dev")c[b.cat]+=b.mins;}));
+  return{t,c};
+}
+/*DATA-END*/
+
+const DAYN=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+const TN={prog:"Programming and DSA",dev:"Development",rev:"Revision and review",test:"Tests",brk:"Breaks"};
+const CN={html:"HTML",css:"CSS",js:"JavaScript",proj:"Capstone project"};
+const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const fT=m=>Math.floor(m/60)+":"+String(m%60).padStart(2,"0");
+const hrs=m=>(m/60).toFixed(1).replace(/\.0$/,"")+" h";
+const $=(s,r)=>(r||document).querySelector(s);
+const $$=(s,r)=>Array.from((r||document).querySelectorAll(s));
+
+const KEY="fresher-roadmap-v1";
+let S={checked:{},status:{},tab:"overview"};
+try{const r=localStorage.getItem(KEY);if(r){const o=JSON.parse(r);if(o&&typeof o==="object")S=Object.assign(S,o);}}catch(e){}
+if(!S.checked||typeof S.checked!=="object")S.checked={};
+if(!S.status||typeof S.status!=="object")S.status={};
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}};
+
+const total=WK.map(o=>tally(o.days));
+const sumT={prog:0,dev:0,rev:0,test:0,brk:0},sumC={html:0,css:0,js:0,proj:0};
+total.forEach(x=>{for(const k in sumT)sumT[k]+=x.t[k];for(const k in sumC)sumC[k]+=x.c[k];});
+const allMin=Object.values(sumT).reduce((a,b)=>a+b,0);
+
+function itemHTML(id,text){
+  return '<label class="item"><input type="checkbox" class="task" id="'+id+'"'+(S.checked[id]?" checked":"")+'><span>'+esc(text)+'</span></label>';
+}
+function blockHTML(w,d,bi,b,start){
+  const tn=b.track==="dev"?CN[b.cat]:TN[b.track];
+  const head='<div class="bhead t-'+b.track+'"><span>'+fT(start)+" to "+fT(start+b.mins)+'</span><span class="tn"><i class="dot"></i>'+(b.track==="brk"?"Break":esc(tn))+'</span><span>'+b.mins+' min</span></div>';
+  if(b.track==="brk")return '<div class="block brk">'+head+'</div>';
+  let g='<div class="groups">';
+  b.groups.forEach((grp,gi)=>{
+    g+='<div><div class="gh">'+esc(grp.h)+'</div>'+grp.items.map((t,ii)=>itemHTML("w"+w.n+"."+d+"."+bi+"."+gi+"."+ii,t)).join("")+'</div>';
+  });
+  g+='</div>';
+  return '<div class="block">'+head+'<h4 class="btitle">'+esc(b.title)+'</h4>'+g+'</div>';
+}
+function dayHTML(w,day){
+  let t=0;
+  const body=day.blocks.map((b,bi)=>{const h=blockHTML(w,day.d,bi,b,t);t+=b.mins;return h;}).join("");
+  const sub=day.d<5?w.prog[day.d].focus+" / "+w.dev[day.d].focus:(day.d===5?"Weekly test, build and problem set":"Revision, debugging and catch-up");
+  return '<details class="day" data-day="'+day.d+'"><summary><span class="chev"></span><span class="dname">'+DAYN[day.d]+'<small>'+esc(sub)+'</small></span><span class="dcount"><span class="dc"></span> &middot; '+hrs(day.mins)+'</span></summary><div class="dbody">'+body+'</div></details>';
+}
+function weekHTML(o){
+  const w=o.w,tl=total[w.n-1];
+  const dm=tl.t.prog+tl.t.dev+tl.t.rev+tl.t.test+tl.t.brk;
+  const scid=n=>"w"+w.n+".sc."+n;
+  const stat=[["g","Green","Completes about 80 percent independently"],["y","Yellow","Understands but needs hints"],["r","Red","Cannot solve basics without copying"]];
+  const sHTML=stat.map(s=>'<label title="'+s[2]+'"><input type="radio" name="st'+w.n+'" value="'+s[0]+'"'+(S.status["w"+w.n]===s[0]?" checked":"")+'>'+s[1]+'</label>').join("");
+  return '<section class="panel" id="p-w'+w.n+'" data-week="'+w.n+'" hidden>'+
+   '<div class="whead"><div class="kicker">Week '+w.n+' of 10</div><h2>'+esc(w.title)+'</h2>'+
+   '<p class="mile">'+esc(w.milestone)+'</p>'+
+   '<div class="wmeta"><span>'+hrs(dm)+' this week</span><span>Programming '+hrs(tl.t.prog)+'</span><span>Development '+hrs(tl.t.dev)+'</span><span>Revision '+hrs(tl.t.rev)+'</span><span>Tests '+hrs(tl.t.test)+'</span></div>'+
+   '<div class="overall"><div class="bar wbar" role="progressbar" aria-label="Week '+w.n+' progress" aria-valuemin="0" aria-valuemax="100"><i></i></div><span class="num wnum"></span></div></div>'+
+   '<div>'+o.days.map(dy=>dayHTML(w,dy)).join("")+'</div>'+
+   '<div class="card"><h3>Week '+w.n+' self-check</h3><p class="sub">Tick only what you can do without notes or help.</p><div class="selfcheck">'+w.selfCheck.map((t,i)=>itemHTML(scid(i),t)).join("")+'</div>'+
+   '<div class="status" style="margin-top:14px"><span class="lbl">Status</span>'+sHTML+'</div>'+
+   '<p class="hint" style="margin-top:8px">Red and Yellow topics become the first thing revised next week. Nobody moves on at the same pace by default.</p></div>'+
+   '<div class="pager">'+(w.n>1?'<button class="btn" data-go="w'+(w.n-1)+'">Week '+(w.n-1)+'</button>':'<button class="btn" data-go="overview">Overview</button>')+(w.n<10?'<button class="btn" data-go="w'+(w.n+1)+'">Week '+(w.n+1)+'</button>':'<button class="btn" data-go="changes">What changed</button>')+'</div>'+
+  '</section>';
+}
+
+function meterRow(label,mins,max,cls,val){
+  return '<div class="rrow"><span class="lab"><i class="dot '+cls+'"></i>'+esc(label)+'</span><div class="meter '+cls+'"><i style="--w:'+(mins/max*100).toFixed(1)+'%"></i></div><span class="val">'+val+'</span></div>';
+}
+function overviewHTML(){
+  const trackRows=["prog","dev","rev","test","brk"].map(k=>meterRow(TN[k],sumT[k],allMin,"t-"+k,hrs(sumT[k])+" / "+Math.round(sumT[k]/allMin*100)+"%")).join("");
+  const devMin=sumT.dev;
+  const catRows=["html","css","js","proj"].map(k=>meterRow(CN[k],sumC[k],devMin,"c-"+k,hrs(sumC[k])+" / "+Math.round(sumC[k]/devMin*100)+"%")).join("");
+  const maxWeek=Math.max.apply(null,total.map(x=>x.t.prog+x.t.dev+x.t.rev+x.t.test+x.t.brk));
+  const weekRows=WK.map((o,i)=>{
+    const t=total[i].t,sum=t.prog+t.dev+t.rev+t.test+t.brk;
+    const seg=["prog","dev","rev","test","brk"].map(k=>'<i class="t-'+k+'" style="--c:var(--'+k+');--w:'+(t[k]/maxWeek*100).toFixed(2)+'%" title="'+TN[k]+' '+hrs(t[k])+'"></i>').join("");
+    return '<div class="rrow"><span class="lab"><button class="linkbtn" data-go="w'+o.w.n+'">Week '+o.w.n+'</button></span><div class="meter">'+seg+'</div><span class="val">'+hrs(sum)+'</span></div>';
+  }).join("");
+  const legend=["prog","dev","rev","test","brk"].map(k=>'<span><i class="dot t-'+k+'"></i>'+TN[k]+'</span>').join("");
+  const map=WK.map(o=>'<tr><td><button class="linkbtn" data-go="w'+o.w.n+'">W'+o.w.n+'</button></td><td>'+esc(o.w.progTheme)+'</td><td>'+esc(o.w.devTheme)+'</td><td>'+esc(o.w.mapOut)+'</td></tr>').join("");
+  return '<section class="panel" id="p-overview" hidden>'+
+  '<div class="card"><h3>Week map</h3><p class="sub">Programming and development run side by side every day. C++ carries DSA; Java arrives in Week 6 by porting what learners already solved.</p><div class="scroll"><table><thead><tr><th></th><th>Programming and DSA</th><th>Development</th><th>Output</th></tr></thead><tbody>'+map+'</tbody></table></div></div>'+
+  '<div class="grid2"><div class="card"><h3>Daily schedule</h3><p class="sub">Minutes include breaks. Programming comes first because it needs the most focus; the visual, instantly checkable dev block follows.</p><div class="scroll"><table><thead><tr><th>Day</th><th class="n">Total</th><th>Shape</th></tr></thead><tbody>'+
+   '<tr><td>Mon to Thu</td><td class="n">2 h 30</td><td>Recall 10, programming 65, break 5, dev 65, log 5</td></tr>'+
+   '<tr><td>Friday</td><td class="n">3 h 30</td><td>Recall 15, programming 75, break 10, dev 75, apply and combine 30, log 5</td></tr>'+
+   '<tr><td>Saturday</td><td class="n">4 h</td><td>Test 45, build 75, problem set 75, mistake review 20, breaks 20, log 5</td></tr>'+
+   '<tr><td>Sunday</td><td class="n">3 h</td><td>Weekly revision 30, debug day 60, free build 50, plan 25, break 10, log 5</td></tr>'+
+  '</tbody></table></div></div>'+
+  '<div class="card"><h3>Flow-state rules</h3><p class="sub">The structure exists to protect attention.</p><ul class="rules">'+
+   '<li><span class="k">01</span><span><b>One goal per block.</b> Each block names one concept and ends with something that runs.</span></li>'+
+   '<li><span class="k">02</span><span><b>Challenge ramps up.</b> Practice lists run from easy to hard. The last item is the stretch; drop it if the block runs late.</span></li>'+
+   '<li><span class="k">03</span><span><b>Fast feedback.</b> Run the code or refresh the browser after every small change.</span></li>'+
+   '<li><span class="k">04</span><span><b>Think, then build.</b> Logic-heavy programming first, visual work second.</span></li>'+
+   '<li><span class="k">05</span><span><b>Fixed breaks.</b> Stand up and step away from the screen. Do not merge blocks to save time.</span></li>'+
+   '<li><span class="k">06</span><span><b>Close the loop.</b> The 5-minute log feeds Sunday.</span></li></ul></div></div>'+
+  '<div class="card"><h3>Hours across the 10 weeks</h3><p class="sub">'+hrs(allMin)+' in total, counted from the daily plans below.</p>'+
+   '<div class="grid2"><div><div class="gh" style="margin-bottom:10px">By track</div><div class="rows">'+trackRows+'</div></div>'+
+   '<div><div class="gh" style="margin-bottom:10px">Development split</div><div class="rows">'+catRows+'</div><p class="hint" style="margin-top:12px">HTML finishes in Week 2, CSS in Week 4, JavaScript runs Weeks 5 to 8, and the capstone uses all three in Weeks 9 and 10.</p></div></div></div>'+
+  '<div class="card"><h3>Hours per week</h3><div class="legend">'+legend+'</div><div class="rows">'+weekRows+'</div><p class="hint" style="margin-top:12px">Week 10 trades build and problem-set time for the final test and demo.</p></div>'+
+  '<div class="card"><h3>Revision system</h3><p class="sub">Spaced revision is built into the week instead of saved for the end.</p><div class="scroll"><table><thead><tr><th>Stage</th><th>Where it happens</th></tr></thead><tbody>'+
+   '<tr><td>D0 learn</td><td>The programming or development block</td></tr>'+
+   '<tr><td>D1 recall</td><td>First 10 to 15 minutes of every weekday, no notes</td></tr>'+
+   '<tr><td>D3 practice</td><td>Friday apply block and Saturday problem set reuse Monday to Wednesday topics</td></tr>'+
+   '<tr><td>D7 revision</td><td>Sunday weekly revision and debug day</td></tr>'+
+   '<tr><td>D14 retention</td><td>Saturday test includes 5 closed-book questions from two weeks earlier</td></tr>'+
+  '</tbody></table></div></div>'+
+  '<div class="note"><b>Honest outlook.</b> This is a full load for freshers. Realistic results after 10 weeks: solid HTML and CSS, JavaScript good enough to build small DOM apps and call an API, C++ comfortable for DSA, Java at a working level reached by porting, and about 50 to 70 DSA problems solved. Weeks 5 to 8 are the hardest because each adds new ideas on both tracks. If a third of the batch is Red at the end of Week 5, use that Saturday and Sunday for catch-up and shrink the Week 9 capstone instead of stretching the programme.</div>'+
+  '<div class="card"><h3>Progress</h3><p class="sub">Checkmarks are saved in this browser only.</p><button class="btn danger" id="resetBtn">Reset all progress</button></div>'+
+  '</section>';
+}
+function changesHTML(){
+  const cut=[
+   ["HTML",["Memorising tag lists and obsolete tags such as font and center","Tables used for layout","Comments as a separate topic"]],
+   ["CSS",["Floats for layout, replaced by Flexbox and Grid","Vendor prefixes","Keyframe animation deep dives; transitions stay","Bootstrap, Tailwind and Sass, better after the programme"]],
+   ["JavaScript",["var hoisting and the prototype chain","this deep dive and call, apply, bind","Regular expressions","JS classes, since OOP is learned in C++ and Java","ES modules and bundlers","jQuery"]],
+   ["C++",["Operator overloading, templates and file handling","Macros and preprocessor tricks","Friend functions and virtual inheritance","Bit manipulation","Smart pointers"]],
+   ["Java",["Generics beyond reading List of String","Threads and concurrency","Streams and lambdas","Inner classes","File I/O and frameworks"]],
+   ["DSA",["Heaps, graphs, dynamic programming, AVL and segment trees","Re-implementing every sort again and again","Memorising operator precedence"]]
+  ];
+  const cutHTML=cut.map(c=>'<div><h4>'+c[0]+'</h4><ul class="plain">'+c[1].map(x=>'<li>'+esc(x)+'</li>').join("")+'</ul></div>').join("");
+  return '<section class="panel" id="p-changes" hidden>'+
+  '<div class="card"><h3>What changed from the earlier plan</h3><p class="sub">The structure is the same: HTML before CSS before JS, language basics before OOP before DSA, a weekly test and a revision system.</p><ul class="plain">'+
+   '<li>Daily time is now 2.5 hours Monday to Thursday, with 3.5, 4 and 3 hours on Friday, Saturday and Sunday. Each weekday is two 65-minute blocks instead of long lectures.</li>'+
+   '<li>Java is added. C++ stays the main language for DSA. Java starts in Week 6 by porting solved problems, then gets its own OOP and collections work in Week 7.</li>'+
+   '<li>HTML and CSS are complete by Week 4. JavaScript covers syntax, DOM, events, ES6, localStorage and fetch. A small capstone fills Weeks 9 and 10.</li>'+
+   '<li>Each Sunday is a debug and consolidation day, and each Saturday ends with a status check of Green, Yellow or Red.</li>'+
+   '<li>STL is kept to vector and string until Week 3, and the heavier OOP and DSA topics start only after pointers and recursion are in place.</li></ul></div>'+
+  '<div class="card"><h3>Cut or shortened</h3><p class="sub">Removed because they cost time without helping a fresher build, solve or get hired in this window. Do-while, switch, bubble sort and merge sort stay but are kept short.</p><div class="cutgrid">'+cutHTML+'</div></div>'+
+  '</section>';
+}
+
+let panels="";
+panels+=overviewHTML();
+WK.forEach(o=>panels+=weekHTML(o));
+panels+=changesHTML();
+$("#main").innerHTML=panels;
+
+const tabIds=["overview"].concat(WK.map(o=>"w"+o.w.n),["changes"]);
+$("#tabs").innerHTML=tabIds.map(id=>{
+  const lab=id==="overview"?"Overview":id==="changes"?"Changes":"W"+id.slice(1);
+  return '<button class="tab'+(id==="overview"||id==="changes"?" wide":"")+'" role="tab" data-go="'+id+'" aria-selected="false"><span>'+lab+'</span>'+(id[0]==="w"?'<i></i>':"")+'</button>';
+}).join("");
+$("#eyebrow").textContent="Fresher programme / 10 weeks / "+hrs(allMin);
+
+function refresh(){
+  let all=0,done=0;
+  $$("section[data-week]").forEach(p=>{
+    const n=p.dataset.week;
+    const tasks=$$("input.task",p);
+    const dn=tasks.filter(x=>x.checked).length;
+    all+=tasks.length;done+=dn;
+    const pct=tasks.length?Math.round(dn/tasks.length*100):0;
+    $(".wbar",p).setAttribute("aria-valuenow",pct);
+    $(".wbar i",p).style.setProperty("--p",pct+"%");
+    $(".wnum",p).textContent=dn+" of "+tasks.length+" tasks";
+    const tab=$('.tab[data-go="w'+n+'"] i');
+    if(tab)tab.style.setProperty("--p",pct+"%");
+    $$("details.day",p).forEach(dy=>{
+      const t=$$("input.task",dy),c=t.filter(x=>x.checked).length;
+      const el=$(".dc",dy);el.textContent=c+"/"+t.length;
+      $(".dcount",dy).classList.toggle("done",t.length>0&&c===t.length);
+    });
+  });
+  const pct=all?Math.round(done/all*100):0;
+  $("#overallBar").setAttribute("aria-valuenow",pct);
+  $("#overallBar i").style.setProperty("--p",pct+"%");
+  $("#overallNum").textContent=done+" of "+all+" tasks ("+pct+"%)";
+}
+function openFirstIncomplete(p){
+  const ds=$$("details.day",p);
+  if(ds.some(x=>x.open))return;
+  const t=ds.find(x=>$$("input.task",x).some(i=>!i.checked))||ds[0];
+  if(t)t.open=true;
+}
+function show(id,scroll){
+  if(!tabIds.includes(id))id="overview";
+  $$("section.panel").forEach(p=>p.hidden=p.id!=="p-"+id);
+  $$(".tab").forEach(t=>{const on=t.dataset.go===id;t.setAttribute("aria-selected",on);if(on)t.scrollIntoView({inline:"center",block:"nearest"});});
+  const p=$("#p-"+id);
+  if(id[0]==="w"&&id!=="overview")openFirstIncomplete(p);
+  S.tab=id;save();
+  try{if(location.hash.slice(1)!==id)history.replaceState(null,"","#"+id);}catch(e){}
+  if(scroll){const top=$("#tabs").getBoundingClientRect().top+window.scrollY-(parseInt(getComputedStyle(document.documentElement).paddingTop)||0);
+    window.scrollTo({top:Math.max(0,top),behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});}
+}
+document.addEventListener("click",e=>{
+  const g=e.target.closest("[data-go]");
+  if(g){show(g.dataset.go,true);}
+});
+document.addEventListener("change",e=>{
+  const t=e.target;
+  if(t.classList&&t.classList.contains("task")){
+    if(t.checked)S.checked[t.id]=1;else delete S.checked[t.id];
+    save();refresh();
+  }else if(t.type==="radio"&&t.name&&t.name.indexOf("st")===0){
+    S.status["w"+t.name.slice(2)]=t.value;save();
+  }
+});
+let rt;
+$("#resetBtn").addEventListener("click",function(){
+  const b=this;
+  if(b.dataset.arm){
+    S.checked={};S.status={};save();
+    $$("input.task").forEach(x=>x.checked=false);
+    $$('input[type="radio"]').forEach(x=>x.checked=false);
+    delete b.dataset.arm;b.textContent="Reset all progress";clearTimeout(rt);refresh();
+  }else{
+    b.dataset.arm="1";b.textContent="Click again to confirm";
+    rt=setTimeout(()=>{delete b.dataset.arm;b.textContent="Reset all progress";},4000);
+  }
+});
+window.addEventListener("hashchange",()=>show(location.hash.slice(1),false));
+refresh();
+const startTab=(location.hash&&location.hash.slice(1))||S.tab||"overview";
+show(startTab,false);
+</script>
+
+</body></html>
